@@ -41,14 +41,8 @@ router.get('/europe_country', function(req, res){
     request('https://www.countries-ofthe-world.com/countries-of-europe.html', function (error, response, html) {
         if (!error && response.statusCode == 200) {
             var $ = cheerio.load(html);
-           // var aa = $('li', '.column').text();
-            $('li', '.column').each(function(i, items_list){
-
-                $(items_list).find('li').each(function(j, li){
-                    console.log(li.text());
-                });
-            });
-          //  console.log('data:' + aa);
+            var aa = $('li', '.column').text();
+            console.log(aa);
             res.send('Check console mate!!!');
         }
     });
