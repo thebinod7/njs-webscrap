@@ -2,6 +2,9 @@ const express = require('express');
 const path = require('path');
 var cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+var fs = require('fs');
+var request = require('request');
+var cheerio = require('cheerio');
 
 const app = express();
 
