@@ -14,7 +14,8 @@
     "cookie-parser": "*",
     "ejs": "^2.5.6",
     "express": "*",
+    "nodemon": "*",
     "request": "*",
-    "nodemon":"*"
+    "scrape-it": "^3.3.3"
   }
 }

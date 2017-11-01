@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 var request = require('request');
 var cheerio = require('cheerio');
+const scrapeIt = require("scrape-it");
 var fs = require('fs');
 
 router.get('/',function (req,res) {
@@ -37,13 +38,31 @@ router.get('/scrape', function(req, res){
     });
 });
 
-router.get('/europe_country', function(req, res){
-    request('https://www.countries-ofthe-world.com/countries-of-europe.html', function (error, response, html) {
+router.get('/europe-country', function(req, res){
+    const url = 'https://www.countries-ofthe-world.com/countries-of-europe.html';
+    request(url, function (error, response, html) {
         if (!error && response.statusCode == 200) {
             var $ = cheerio.load(html);
             var aa = $('li', '.column').text();
             console.log(aa);
             res.send('Check console mate!!!');
+        }
+    });
+});
+
+router.get('/realagents', function(req, res){
+    const url = 'http://www.realagents.com/';
+    request(url, function (error, response, html) {
+      console.log(html);
+        if (!error && response.statusCode == 200) {
+            var $ = cheerio.load(html);
+            const titles = [];
+            $('.properties__address-street').each(function(i, elem) {
+              titles[i] = $(this).text();
+            });
+            titles.join(',');
+            console.log('PROPERTY TITLES:' + '\r\n',titles);
+            res.send('Check your console !!!');
         }
     });
 });
